@@ -107,21 +107,21 @@ function undo(that) {
     that.previousElementSibling.classList.remove("d-none")
 }
 
+let editstudentindex
 function editstudent(that, studentid) {
     addbtn.innerHTML = "edit"
     addbtn.classList.add("btn-info")
     addbtn.setAttribute("data-bs-toggle", "modal")
     addbtn.setAttribute("data-bs-target", "#staticBackdrop")
     addbtn.setAttribute("data-type", "edit")
-    let editstudentindex = getindex(studentid)
+    editstudentindex = getindex(studentid)
     addbtn.setAttribute("data-index", editstudentindex)
     let studentdata = students[editstudentindex]
     inputs.forEach(function (input) {
         let name = input.getAttribute("name")
         input.value = studentdata[name]
     })
-    let undo = tbody.querySelector(".undo")
-    undo.classList.remove("d-none")
+    that.nextElementSibling.classList.remove("d-none")
     that.classList.add("d-none")
 }
 
@@ -148,6 +148,10 @@ function editform() {
         updatelocalstorage()
         showstudent(students)
         clearform()
+        tbody.querySelectorAll("tr")[editstudentindex].classList.add("table-success")
+        setTimeout(function () {
+            tbody.querySelectorAll("tr")[editstudentindex].classList.remove("table-success")
+        }, 1500)
     } 
 }
 
