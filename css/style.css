@@ -11,6 +11,24 @@ body {
 
 #register .item {
     background-color: #0f0c29;
+    position: relative;
+}
+#register .clear{
+    background-color: #0f0c29;
+    top: 70px;
+    left: 100%;
+    opacity: 0;
+    transition: .5s;
+    position: absolute;
+}
+#register .clear button{
+    cursor: initial;
+}
+#register .clear.active button{
+    cursor: pointer;
+}
+#register .clear.active{
+    opacity: 1;
 }
 
 #table {

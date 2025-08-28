@@ -63,7 +63,8 @@ function showstudent(students) {
 function clearform() {
     form.reset()
     inputs.forEach(function (input) {
-        input.classList.remove("is-valid", "alert", "alert-sucess")
+        input.classList.remove("is-valid", "alert", "is-invalid")
+        input.nextElementSibling.classList.add("d-none")
     })
     addbtn.classList.remove("btn-info")
     addbtn.setAttribute("data-type", "add")
@@ -189,6 +190,8 @@ form.addEventListener("submit", function (event) {
     } else {
         editform()
     }
+    document.querySelector(".clear").classList.remove("active")
+
 })
 
 
@@ -210,4 +213,14 @@ inputs.forEach(function (input, index) {
             input.nextElementSibling.classList.remove("d-none")
         }
     })
+})
+
+inputs.forEach(function (input) {
+    input.onfocus = function () {
+        document.querySelector(".clear").classList.add("active")
+    }
+})
+document.querySelector(".clear > button").addEventListener("click", function () {
+    clearform()
+    this.parentElement.classList.remove("active")
 })

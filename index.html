@@ -14,9 +14,9 @@
 
     <section id="register" class="py-5">
         <div class="container">
-            <div class="item m-auto w-75 text-center text-light  p-5 rounded-4">
+            <div class="item m-auto w-75 text-center text-light p-5 rounded-4">
                 <h1 class="text-uppercase fw-bold mb-5">students form</h1>
-                <form action="">
+                <form action="" autocomplete="off" class="">
                     <div class="input-group flex-column mb-4">
                         <input required type="text" class="form-control w-100 m-0 p-2 rounded-3 border-3 "
                             placeholder="firstName" name="firstname">
@@ -47,14 +47,17 @@
                     </div>
 
                 </form>
+                <div class="clear ps-3 py-2 pe-2 rounded-end">
+                    <button class="btn btn-success">clear</button>
+                </div>
             </div>
         </div>
     </section>
-
-    <h1 class="text-light text-center text-uppercase d-none nodata mb-3">no students !</h1>
-
+    
+    
     <section id="table" class="pb-5">
         <div class="container">
+            <h4 class="alert alert-danger text-center  d-none nodata mb-3">no students !</h4>
             <table class="table table-light table-striped table-hover">
                 <thead class="table-dark border-bottom">
                     <tr>
