@@ -33,6 +33,29 @@ function addstudent() {
             inputvalue = input.value
         studentdata[inputname] = inputvalue
     })
+    for (let i = 0; i < students.length; i++) {
+        if (students[i].email == studentdata.email ||students[i].phone == studentdata.phone) {
+            if (students[i].email == studentdata.email) {
+                let warning = document.createElement("h4")
+                warning.textContent = "this email has been added before!"
+                warning.classList.add("alert", "alert-danger", "text-center")
+                document.querySelector("table").before(warning);
+                setTimeout(() => {
+                    warning.remove()
+                }, 3000)
+            }
+            if (students[i].phone == studentdata.phone) {
+                let warning = document.createElement("h4")
+                warning.textContent = "this phone has been added before!"
+                warning.classList.add("alert", "alert-danger", "text-center")
+                document.querySelector("table").before(warning);
+                setTimeout(() => {
+                    warning.remove()
+                }, 3000)
+            }
+            return 0;
+        }
+    }
     students.push(studentdata)
     studentdata.id = students.length
     return studentdata
@@ -50,7 +73,7 @@ function showstudent(students) {
                 <td>${student.age}</td>
                 <td>${student.phone}</td>
                 <td>
-                    <button class="btn btn-info text-light" onclick="editstudent(this, ${student.id})">edit</button>
+                    <button class="btn btn-info text-light editing-btn" onclick="editstudent(this, ${student.id})">edit</button>
                     <button class="btn btn-primary text-light d-none undo" onclick="undo(this)">undo</button>
                     <button class="btn btn-danger text-light" onclick="deletestudent(${student.id})" data-bs-toggle="modal" data-bs-target="#staticBackdrop">delete</button>
                 </td>
@@ -102,13 +125,17 @@ function deletestudent(studentid) {
     }
 }
 
+let allEditBtns;
 function undo(that) {
     clearform()
     that.classList.add("d-none")
     that.previousElementSibling.classList.remove("d-none")
+    allEditBtns.forEach(function (btn) {
+        btn.removeAttribute("disabled")
+    })
 }
 
-let editstudentindex
+let editstudentindex;
 function editstudent(that, studentid) {
     addbtn.innerHTML = "edit"
     addbtn.classList.add("btn-info")
@@ -124,6 +151,10 @@ function editstudent(that, studentid) {
     })
     that.nextElementSibling.classList.remove("d-none")
     that.classList.add("d-none")
+    allEditBtns = document.querySelectorAll("button.editing-btn")
+    allEditBtns.forEach(function (btn) {
+        btn.setAttribute("disabled", true)
+    })
 }
 
 // form adding and editing
@@ -144,6 +175,29 @@ function editform() {
             let name = input.getAttribute("name")
             editedstudent[name] = input.value
         })
+        for (let i = 0; i < students.length; i++) {
+            if (students[i].email == editedstudent.email || students[i].phone == editedstudent.phone) {
+                if (students[i].email == editedstudent.email) {
+                    let warning = document.createElement("h4")
+                    warning.textContent = "this email has been added before!"
+                    warning.classList.add("alert", "alert-danger", "text-center")
+                    document.querySelector("table").before(warning);
+                    setTimeout(() => {
+                        warning.remove()
+                    }, 3000)
+                }
+                if (students[i].phone == editedstudent.phone) {
+                    let warning = document.createElement("h4")
+                    warning.textContent = "this phone has been added before!"
+                    warning.classList.add("alert", "alert-danger", "text-center")
+                    document.querySelector("table").before(warning);
+                    setTimeout(() => {
+                        warning.remove()
+                    }, 3000)
+                }
+                return 0;
+            }
+        }
         editedstudent.id = addbtn.getAttribute("data-index")
         students[addbtn.getAttribute("data-index")] = editedstudent
         updatelocalstorage()
@@ -153,6 +207,9 @@ function editform() {
         setTimeout(function () {
             tbody.querySelectorAll("tr")[editstudentindex].classList.remove("table-success")
         }, 1500)
+        allEditBtns.forEach(function (btn) {
+            btn.removeAttribute("disabled")
+        })
     } 
 }
 
