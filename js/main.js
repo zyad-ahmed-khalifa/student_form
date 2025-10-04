@@ -73,9 +73,9 @@ function showstudent(students) {
                 <td>${student.age}</td>
                 <td>${student.phone}</td>
                 <td>
-                    <button class="btn btn-info text-light editing-btn" onclick="editstudent(this, ${student.id})">edit</button>
-                    <button class="btn btn-primary text-light d-none undo" onclick="undo(this)">undo</button>
-                    <button class="btn btn-danger text-light" onclick="deletestudent(${student.id})" data-bs-toggle="modal" data-bs-target="#staticBackdrop">delete</button>
+                    <button class="btn btn-info text-light editing-btn mb-2" onclick="editstudent(this, ${student.id})">edit</button>
+                    <button class="btn btn-primary text-light d-none undo mb-2" onclick="undo(this)">undo</button>
+                    <button class="btn btn-danger text-light mb-2" onclick="deletestudent(${student.id})" data-bs-toggle="modal" data-bs-target="#staticBackdrop">delete</button>
                 </td>
             </tr>
         `

@@ -13,23 +13,6 @@ body {
     background-color: #0f0c29;
     position: relative;
 }
-#register .clear{
-    background-color: #0f0c29;
-    top: 70px;
-    left: 100%;
-    opacity: 0;
-    transition: .5s;
-    position: absolute;
-}
-#register .clear button{
-    cursor: initial;
-}
-#register .clear.active button{
-    cursor: pointer;
-}
-#register .clear.active{
-    opacity: 1;
-}
 
 #table {
     width: 100%;
@@ -38,5 +21,11 @@ body {
 @media (min-width:1200px){
     .item{
         width: 50% !important;
+    }
+}
+
+@media (max-width:768px) {
+    .item{
+        width: 100% !important;
     }
 }
