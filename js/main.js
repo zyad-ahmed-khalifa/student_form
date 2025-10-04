@@ -6,7 +6,9 @@ let form = document.querySelector("form"),
     modalbody = modal.querySelector(".modal-body"),
     modalheader = modal.querySelector("h1"),
     modalconfirmbtn = modal.querySelector(".confirm"),
-    students=[]
+    students = [],
+    checkRepeat;
+    
 
 if (localStorage.getItem("student") !== null) {
     students = JSON.parse(localStorage.getItem("student")) || []
@@ -53,6 +55,7 @@ function addstudent() {
                     warning.remove()
                 }, 3000)
             }
+            checkRepeat = true
             return 0;
         }
     }
@@ -219,7 +222,9 @@ form.addEventListener("submit", function (event) {
     
     if (addbtn.getAttribute("data-type") === "add") {
         formadd()
-        clearform()
+        if (!checkRepeat) {
+            clearform()
+        }
         checkcontent()
     } else {
         editform()
