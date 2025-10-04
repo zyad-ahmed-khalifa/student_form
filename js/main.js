@@ -253,7 +253,7 @@ form.addEventListener("submit", function (event) {
 
 
 inputs.forEach(function (input, index) {
-    let regexarr = [/^[A-Za-z]{1}[a-z]+$/, /^[A-Za-z]{1}[a-z]+$/, /^[A-Za-z]+[_\.]*\w*@(gmail|outlook)\.(com|io)$/, /^[1-6][0-9]$/, /^(02)?(01)(0|1|2|5)[0-9]{8}$/]
+    let regexarr = [/^[A-Za-z]{1}[a-z]+$/, /^[A-Za-z]{1}[a-z]+$/, /^[A-Za-z]+[_\.]*\w*@(gmail|outlook)\.(com|io)$/, /^[1-5][0-9]$/, /^(02)?(01)(0|1|2|5)[0-9]{8}$/]
     input.addEventListener("blur", function () {
         if (input.value == "") {
             input.nextElementSibling.innerHTML = "this field is required"
