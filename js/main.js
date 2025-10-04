@@ -175,29 +175,6 @@ function editform() {
             let name = input.getAttribute("name")
             editedstudent[name] = input.value
         })
-        for (let i = 0; i < students.length; i++) {
-            if (students[i].email == editedstudent.email || students[i].phone == editedstudent.phone) {
-                if (students[i].email == editedstudent.email) {
-                    let warning = document.createElement("h4")
-                    warning.textContent = "this email has been added before!"
-                    warning.classList.add("alert", "alert-danger", "text-center")
-                    document.querySelector("table").before(warning);
-                    setTimeout(() => {
-                        warning.remove()
-                    }, 3000)
-                }
-                if (students[i].phone == editedstudent.phone) {
-                    let warning = document.createElement("h4")
-                    warning.textContent = "this phone has been added before!"
-                    warning.classList.add("alert", "alert-danger", "text-center")
-                    document.querySelector("table").before(warning);
-                    setTimeout(() => {
-                        warning.remove()
-                    }, 3000)
-                }
-                return 0;
-            }
-        }
         editedstudent.id = addbtn.getAttribute("data-index")
         students[addbtn.getAttribute("data-index")] = editedstudent
         updatelocalstorage()
